@@ -1,7 +1,7 @@
 def generate_html(body: str) -> str:
     return __generate_header(f"<body> {body} </body>")    
     
-def generate(filme) -> str:
+def generate_body(filme) -> str:
     return f"""
         <div class=\"card text-white bg-dark mb-3\" style=\"max-width: 18rem;\">
 	        <h4 class=\"card-header\">{filme.titulo}</h4>

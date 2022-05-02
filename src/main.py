@@ -3,13 +3,7 @@ import sys
 import json
 import gerador
 
-
 from filme import Filme
-
-def exibir_valores(lista: list) -> None:
-    for i in lista:
-        print(i)
-
 
 token = sys.argv[1]
 
@@ -20,19 +14,18 @@ json = json.loads(response.text)["items"]
 filmes = []
 
 for item in json:
-    filme = Filme(
+    filmes.append(Filme(
         item["title"],
         item["image"],
         item["year"],
         item["imDbRating"]
-    )
-    filmes.append(filme)
+    ))
 
 body = ""
 
-with open('main.html', 'w+') as html:
+with open('index.html', 'w+') as html:
     for filme in filmes:
-        body += gerador.generate(filme)
+        body += gerador.generate_body(filme)
 
     html_finalizado = gerador.generate_html(body)
     
